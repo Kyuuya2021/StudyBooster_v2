@@ -3,30 +3,19 @@
 import { useEffect, useState, useCallback } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
+const steps = [
+  { text: '画像を読み込み中...', duration: 1000 },
+  { text: '文字を認識中...', duration: 2000 },
+  { text: '問題を解析中...', duration: 3000 },
+  { text: '解答を生成中...', duration: 2000 },
+  { text: '解説を準備中...', duration: 1000 }
+];
+
 export default function AnalyzingPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [progress, setProgress] = useState(0);
   const [currentStep, setCurrentStep] = useState(0);
-
-  const steps = [
-    { text: '画像を読み込み中...', duration: 1000 },
-    { text: '文字を認識中...', duration: 2000 },
-    { text: '問題を解析中...', duration: 3000 },
-    { text: '解答を生成中...', duration: 2000 },
-    { text: '解説を準備中...', duration: 1000 }
-  ];
-
-  useEffect(() => {
-    const imageData = searchParams.get('image');
-    if (!imageData) {
-      router.push('/scan');
-      return;
-    }
-
-    // 解析プロセスを開始
-    startAnalysis(imageData);
-  }, [searchParams, router, startAnalysis]);
 
   const startAnalysis = useCallback(async (imageData: string) => {
     let currentProgress = 0;
@@ -90,6 +79,17 @@ export default function AnalyzingPage() {
       }, 1000);
     }
   }, [router]);
+
+  useEffect(() => {
+    const imageData = searchParams.get('image');
+    if (!imageData) {
+      router.push('/scan');
+      return;
+    }
+
+    // 解析プロセスを開始
+    startAnalysis(imageData);
+  }, [searchParams, router, startAnalysis]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex flex-col items-center justify-center p-6">
