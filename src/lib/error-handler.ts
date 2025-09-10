@@ -207,6 +207,6 @@ export function getErrorDisplayData(error: AppError) {
       ERROR_CODES.API_RATE_LIMIT,
       ERROR_CODES.API_SERVER_ERROR,
       ERROR_CODES.NETWORK_ERROR,
-    ].includes(error.code),
+    ].includes(error.code as keyof typeof ERROR_CODES),
   };
 }
