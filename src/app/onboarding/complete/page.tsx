@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import { OnboardingData } from '../page';
 
 export default function OnboardingCompletePage() {
   return (

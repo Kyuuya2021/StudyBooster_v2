@@ -120,7 +120,7 @@ export async function POST(request: NextRequest) {
       const jsonMatch = content.match(/```json\s*([\s\S]*?)\s*```/) || content.match(/\{[\s\S]*\}/);
       const jsonString = jsonMatch ? (jsonMatch[1] || jsonMatch[0]) : content;
       analysis = JSON.parse(jsonString);
-    } catch (parseError) {
+    } catch {
       console.error('Failed to parse OpenAI response:', content);
       throw new Error('AI response parsing failed');
     }

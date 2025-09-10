@@ -83,7 +83,6 @@ const nextConfig: NextConfig = {
   
   // 本番環境での最適化設定
   ...(isDevelopment ? {} : {
-    swcMinify: true,
     poweredByHeader: false,
     generateEtags: true,
   }),

@@ -1,13 +1,13 @@
 'use client';
 
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { HomeLayout } from '@/components/home/HomeLayout';
 import { CameraView } from '@/components/scan/CameraView';
 import { PhotoPreview } from '@/components/scan/PhotoPreview';
 import { useCamera, useAppState } from '@/contexts/AppContext';
 import { useImageManager } from '@/lib/image-manager';
-import { useErrorHandler, ERROR_CODES } from '@/lib/error-handler';
+import { useErrorHandler } from '@/lib/error-handler';
 import { ErrorDisplay } from '@/components/ui/error-display';
 
 export default function ScanPage() {
@@ -42,7 +42,7 @@ export default function ScanPage() {
       let stream;
       try {
         stream = await navigator.mediaDevices.getUserMedia(constraints);
-      } catch (firstError) {
+      } catch {
         // フォールバック: より基本的な設定を試す
         const fallbackConstraints = { video: true };
         stream = await navigator.mediaDevices.getUserMedia(fallbackConstraints);

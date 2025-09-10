@@ -46,7 +46,7 @@ const skills = [
   'その他'
 ];
 
-export function ProfessionalDetailsScreen({ onNext, onBack, data }: ProfessionalDetailsScreenProps) {
+export function ProfessionalDetailsScreen({ onNext, onBack }: ProfessionalDetailsScreenProps) {
   const [selectedPurposes, setSelectedPurposes] = useState<string[]>([]);
   const [selectedIndustry, setSelectedIndustry] = useState<string>('');
   const [selectedSkills, setSelectedSkills] = useState<string[]>([]);

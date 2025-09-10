@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
 export default function AnalyzingPage() {
@@ -26,9 +26,9 @@ export default function AnalyzingPage() {
 
     // 解析プロセスを開始
     startAnalysis(imageData);
-  }, [searchParams, router]);
+  }, [searchParams, router, startAnalysis]);
 
-  const startAnalysis = async (imageData: string) => {
+  const startAnalysis = useCallback(async (imageData: string) => {
     let currentProgress = 0;
     let stepIndex = 0;
 
@@ -89,7 +89,7 @@ export default function AnalyzingPage() {
         router.push(`/error?message=${encodeURIComponent(errorMessage)}`);
       }, 1000);
     }
-  };
+  }, [router]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex flex-col items-center justify-center p-6">

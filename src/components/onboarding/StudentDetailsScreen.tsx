@@ -50,7 +50,7 @@ const subjects = [
   '経済学', '心理学', '哲学', 'その他'
 ];
 
-export function StudentDetailsScreen({ onNext, onBack, data }: StudentDetailsScreenProps) {
+export function StudentDetailsScreen({ onNext, onBack }: StudentDetailsScreenProps) {
   const [selectedCategory, setSelectedCategory] = useState<string>('');
   const [selectedGrade, setSelectedGrade] = useState<string>('');
   const [selectedSubjects, setSelectedSubjects] = useState<string[]>([]);

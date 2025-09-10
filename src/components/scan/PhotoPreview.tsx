@@ -1,5 +1,7 @@
 'use client';
 
+import Image from 'next/image';
+
 interface PhotoPreviewProps {
   imageData: string;
   onRetake: () => void;
@@ -12,9 +14,11 @@ export function PhotoPreview({ imageData, onRetake, onProcess, isProcessing }: P
     <div className="w-full max-w-md">
       {/* Photo Preview */}
       <div className="relative bg-black rounded-2xl overflow-hidden mb-6 shadow-2xl">
-        <img
+        <Image
           src={imageData}
           alt="Captured problem"
+          width={400}
+          height={256}
           className="w-full h-64 object-cover"
         />
         

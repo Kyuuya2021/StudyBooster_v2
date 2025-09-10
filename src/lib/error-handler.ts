@@ -3,17 +3,17 @@
 export interface AppError {
   code: string;
   message: string;
-  details?: any;
+  details?: Record<string, unknown>;
   timestamp: string;
   userMessage: string;
 }
 
 export class CustomError extends Error {
   public code: string;
-  public details?: any;
+  public details?: Record<string, unknown>;
   public userMessage: string;
 
-  constructor(code: string, message: string, userMessage: string, details?: any) {
+  constructor(code: string, message: string, userMessage: string, details?: Record<string, unknown>) {
     super(message);
     this.name = 'CustomError';
     this.code = code;
@@ -207,6 +207,6 @@ export function getErrorDisplayData(error: AppError) {
       ERROR_CODES.API_RATE_LIMIT,
       ERROR_CODES.API_SERVER_ERROR,
       ERROR_CODES.NETWORK_ERROR,
-    ].includes(error.code as any),
+    ].includes(error.code),
   };
 }
